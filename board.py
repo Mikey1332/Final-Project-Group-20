@@ -30,7 +30,7 @@ class Board:
         # print("Drawing Board")
         for r in range(len(self.cells)):
             for c in range(len(self.cells[r])):
-                self.cells[r][c].draw(r*self.width//len(self.sudoku), c*self.height//len(self.sudoku), self.width/len(self.sudoku), self.height/len(self.sudoku))
+                self.cells[r][c].draw(c*self.width//len(self.sudoku), r*self.height//len(self.sudoku), self.width/len(self.sudoku), self.height/len(self.sudoku))
 
         pygame.draw.line(self.screen, pygame.Color("black"), (0, 0),(self.width, 0), self.thickness)
         pygame.draw.line(self.screen, pygame.Color("black"), (0, 0),(0, self.height), self.thickness)
@@ -47,12 +47,20 @@ class Board:
         self.selectC = col
         if self.original[self.selectR][self.selectC] == 0:
             self.cells[row][col].set_selected(True)
+            for r in range(len(self.cells)):
+                self.cells[r][col].set_highlighted(True)
+            for c in range(len(self.cells)):
+                self.cells[row][c].set_highlighted(True)
 
     def unselect(self):
         self.cells[self.selectR][self.selectC].set_selected(False)
+        for r in range(len(self.cells)):
+            self.cells[r][self.selectC].set_highlighted(False)
+        for c in range(len(self.cells)):
+            self.cells[self.selectR][c].set_highlighted(False)
 
     def click(self, x, y):
-        return x*len(self.sudoku)//self.width, y*len(self.sudoku)//self.height
+        return y*len(self.sudoku)//self.height, x*len(self.sudoku)//self.width
 
     def clear(self):
         if self.cells[self.selectR][self.selectC].selected:
@@ -74,7 +82,7 @@ class Board:
                 self.cells[r][c].set_cell_value(self.original[r][c])
 
     def is_full(self):
-        if self.find_empty == (-1, -1):
+        if self.find_empty() == (-1, -1):
             return True
         return False
 
@@ -103,8 +111,8 @@ class Board:
                     if r != other_r and self.sudoku[r][c] == self.sudoku[other_r][c]:
                         return False
                 # check box
-                for box_r in range(r//(len(self.sudoku)**(1/2))*(len(self.sudoku)**(1/2)), r//(len(self.sudoku)**(1/2))*(len(self.sudoku)+(len(self.sudoku)))):
-                    for box_c in range(c//(len(self.sudoku)**(1/2))*(len(self.sudoku)**(1/2)), c//(len(self.sudoku)**(1/2))*(len(self.sudoku)+(len(self.sudoku)))):
+                for box_r in range(int(r//int(len(self.sudoku)**(1/2))*int(len(self.sudoku)**(1/2)), r//int(len(self.sudoku)**(1/2))*len(self.sudoku)+(len(self.sudoku)))):
+                    for box_c in range(int(c//(len(self.sudoku)**(1/2))*int(len(self.sudoku)**(1/2)), c//int(len(self.sudoku)**(1/2))*(len(self.sudoku))+(len(self.sudoku)))):
                         if (r != box_r and c != box_c) and self.sudoku[r][c] == self.sudoku[box_r][box_c]:
                             return False
         return True

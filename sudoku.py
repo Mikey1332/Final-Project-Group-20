@@ -14,6 +14,8 @@ def main():
         game_start = True
         in_progress = False
         game_over = False
+        win = False
+        digit = 0
         while running:
             screen.fill("light blue")
             if game_start:
@@ -24,6 +26,7 @@ def main():
             elif in_progress:
                 board.draw()
                 if board.is_full():
+                    print("checking board")
                     if board.check_board():
                         win = True
                     game_over = True
@@ -42,6 +45,7 @@ def main():
                 elif in_progress:
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         print("click")
+                        board.place_number(digit)
                         board.unselect()
                         board.select(board.click(event.pos[0], event.pos[1])[0], board.click(event.pos[0], event.pos[1])[1])
                         digit = 0
