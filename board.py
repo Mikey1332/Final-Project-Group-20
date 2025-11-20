@@ -1,16 +1,26 @@
-# import pygame, random
+import pygame, random
+
+import sudoku
+from cell import Cell
+
+class Board:
+    size = 9
+    def __init__(self, width, height, screen, difficulty):
+        self.width = width
+        self.height = height
+        self.screen = screen
+        self.difficulty = difficulty
+        self.cells = []
+        self.sudoku = sudoku.generate_sudoku(self.size, difficulty)
+        for r in range(len(self.sudoku)):
+            self.cells.append([])
+            for c in range(len(self.sudoku[r])):
+                self.cells[r] += Cell(sudoku[r][c], r, c, self.screen)
 #
-# class Board:
-#
-#     def __init__(self, width, height, screen = pygame.display.set_mode((640, 512)), difficulty):
-#         self.width = width
-#         self.height = height
-#         self.screen = screen
-#         self.difficulty = difficulty
-#
-#     def draw(self):
-#         # pygame.draw.line(self.screen, pygame.Color("black"), (0, pixel), (screenW, pixel))
-#         print("Make Draw method")
-#     #
-#     # def select(self, row, col):
-#     #
+    def draw(self):
+
+        for cell in self.cells:
+            cell.draw()
+
+    def select(self, row, col):
+        self.cells[row][col].select()
