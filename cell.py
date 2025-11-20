@@ -5,6 +5,7 @@ class Cell:
     pygame.font.init()
     font = pygame.font.Font(None, 90)
     line_color = pygame.Color("light blue")
+    original_text_color = pygame.Color("black")
 
     def __init__(self, value, row, col, screen):
         self.value = value
@@ -42,8 +43,9 @@ class Cell:
 
         if self.sketched_value != 0:
             if self.selected and self.sketched_value!=self.value:
-                text_color = pygame.Color("dark blue")
+                text_color = pygame.Color("royal blue")
+                self.original_text_color = pygame.Color("dark blue")
             else:
-                text_color = pygame.Color("black")
+                text_color = self.original_text_color
             text_surface = self.font.render(str(self.sketched_value), True, text_color)
             self.screen.blit(text_surface, (x+width/3.5, y))
