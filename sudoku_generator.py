@@ -101,4 +101,4 @@ def generate_sudoku(size, removed):
     sudoku.print_board()
     return board
 
-generate_sudoku(9, 0)
+# generate_sudoku(9, 0)
