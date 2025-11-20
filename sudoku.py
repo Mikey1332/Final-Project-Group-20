@@ -44,21 +44,22 @@ def main():
                     running = False
                 elif in_progress:
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        print("click")
-                        board.place_number(digit)
+                        if digit != 0:
+                            board.place_number(digit)
                         board.unselect()
-                        board.select(board.click(event.pos[0], event.pos[1])[0], board.click(event.pos[0], event.pos[1])[1])
                         digit = 0
+                        board.select(board.click(event.pos[0], event.pos[1])[0], board.click(event.pos[0], event.pos[1])[1])
                     elif event.type == pygame.KEYDOWN:
                         if chr(event.key).isdigit() and int(event.key)!=48:
-                            digit = chr(event.key)
+                            digit = int(chr(event.key))
                             board.sketch(digit)
                             print(f"Number pressed: {digit}")
                         elif event.key == pygame.K_RETURN:
                             board.place_number(digit)
                             board.unselect()
-                            print(f"Entered")
-                        elif event.key == pygame.K_DELETE:
+                            print("Enter")
+                        elif event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE:
+                            print("Delete")
                             board.clear()
             pygame.display.flip()
             clock.tick(60)

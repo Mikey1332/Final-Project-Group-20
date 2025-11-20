@@ -23,6 +23,8 @@ class Board:
             self.cells.append([])
             for c in range(len(self.sudoku)):
                 self.cells[r].append(Cell(self.sudoku[r][c], r, c, self.screen))
+                if self.sudoku[r][c] == 0:
+                    self.cells[r][c].set_editable(True)
         self.selectR = -1
         self.selectC = -1
 #
@@ -45,12 +47,16 @@ class Board:
     def select(self, row, col):
         self.selectR = row
         self.selectC = col
-        if self.original[self.selectR][self.selectC] == 0:
-            self.cells[row][col].set_selected(True)
-            for r in range(len(self.cells)):
-                self.cells[r][col].set_highlighted(True)
+        # if self.original[self.selectR][self.selectC] == 0:
+        self.cells[row][col].set_selected(True)
+        for r in range(len(self.cells)):
+            self.cells[r][col].set_highlighted(True)
+        for c in range(len(self.cells)):
+            self.cells[row][c].set_highlighted(True)
+        for r in range(len(self.cells)):
             for c in range(len(self.cells)):
-                self.cells[row][c].set_highlighted(True)
+                if self.cells[r][c].value == self.cells[row][col].value and self.cells[r][c].value != 0:
+                    self.cells[r][c].set_common(True)
 
     def unselect(self):
         self.cells[self.selectR][self.selectC].set_selected(False)
@@ -58,21 +64,22 @@ class Board:
             self.cells[r][self.selectC].set_highlighted(False)
         for c in range(len(self.cells)):
             self.cells[self.selectR][c].set_highlighted(False)
+        for r in range(len(self.cells)):
+            for c in range(len(self.cells)):
+                self.cells[r][c].set_common(False)
 
     def click(self, x, y):
         return y*len(self.sudoku)//self.height, x*len(self.sudoku)//self.width
 
     def clear(self):
-        if self.cells[self.selectR][self.selectC].selected:
-            if self.original[self.selectR][self.selectC] == 0:
-                self.cells[self.selectR][self.selectC].set_cell_value(0)
+        self.place_number(0)
 
     def sketch(self, value):
-        if self.cells[self.selectR][self.selectC].selected:
+        if self.cells[self.selectR][self.selectC].editable:
             self.cells[self.selectR][self.selectC].set_sketched_value(value)
 
     def place_number(self, value):
-        if self.cells[self.selectR][self.selectC].selected:
+        if self.cells[self.selectR][self.selectC].editable:
             self.cells[self.selectR][self.selectC].set_cell_value(value)
         self.update_board()
 
