@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fba28e54-ea97-4ac8-93d6-c1ccbfab3851" name="Changes" comment="deleted comments">
+    <list default="true" id="fba28e54-ea97-4ac8-93d6-c1ccbfab3851" name="Changes" comment="Changed text colors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/cell.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku_generator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,20 +45,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.SodokuGenerator.executor": "Run",
-    "Python.board.executor": "Run",
-    "Python.cell.executor": "Run",
-    "Python.sudoku.executor": "Run",
-    "Python.sudoku_generator.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.SodokuGenerator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.board.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cell.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sudoku.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sudoku_generator.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -123,7 +122,47 @@
       <option name="project" value="LOCAL" />
       <updated>1763615627020</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added numbers, inputs, box selection, and empty boxes">
+      <option name="closed" value="true" />
+      <created>1763618214354</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1763618214354</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added numbers, inputs, box selection, and empty boxes">
+      <option name="closed" value="true" />
+      <created>1763618234513</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1763618234513</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fixed the selection">
+      <option name="closed" value="true" />
+      <created>1763618510498</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1763618510498</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fixed the mirrored board in console vs. screen and improved GUI">
+      <option name="closed" value="true" />
+      <created>1763652447386</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763652447386</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Changed text colors">
+      <option name="closed" value="true" />
+      <created>1763653416096</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763653416096</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,6 +183,10 @@
     <MESSAGE value="added temporary draw methods" />
     <MESSAGE value="added interface and events" />
     <MESSAGE value="deleted comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted comments" />
+    <MESSAGE value="Added numbers, inputs, box selection, and empty boxes" />
+    <MESSAGE value="Fixed the selection" />
+    <MESSAGE value="Fixed the mirrored board in console vs. screen and improved GUI" />
+    <MESSAGE value="Changed text colors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed text colors" />
   </component>
 </project>
