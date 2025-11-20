@@ -30,7 +30,7 @@ class Board:
         # print("Drawing Board")
         for r in range(len(self.cells)):
             for c in range(len(self.cells[r])):
-                self.cells[r][c].draw(c*self.width//len(self.sudoku), r*self.height//len(self.sudoku), self.width/len(self.sudoku), self.height/len(self.sudoku))
+                self.cells[r][c].draw(r*self.width//len(self.sudoku), c*self.height//len(self.sudoku), self.width/len(self.sudoku), self.height/len(self.sudoku))
 
         pygame.draw.line(self.screen, pygame.Color("black"), (0, 0),(self.width, 0), self.thickness)
         pygame.draw.line(self.screen, pygame.Color("black"), (0, 0),(0, self.height), self.thickness)
