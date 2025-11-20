@@ -12,7 +12,12 @@ class Board:
         self.screen = screen
         self.difficulty = difficulty
         self.cells = []
-        self.sudoku = generate_sudoku(self.size, difficulty)
+        self.removed = 30
+        if difficulty == "medium":
+            self.removed = 40
+        elif difficulty == "hard":
+            self.removed = 50
+        self.sudoku = generate_sudoku(self.size, self.removed)
         self.original = self.sudoku
         for r in range(len(self.sudoku)):
             self.cells.append([])
@@ -25,7 +30,7 @@ class Board:
         # print("Drawing Board")
         for r in range(len(self.cells)):
             for c in range(len(self.cells[r])):
-                self.cells[r][c].draw(r*self.width//len(self.sudoku), c*self.height//len(self.sudoku), self.width/len(self.sudoku), self.height/len(self.sudoku))
+                self.cells[r][c].draw(c*self.width//len(self.sudoku), r*self.height//len(self.sudoku), self.width/len(self.sudoku), self.height/len(self.sudoku))
 
         pygame.draw.line(self.screen, pygame.Color("black"), (0, 0),(self.width, 0), self.thickness)
         pygame.draw.line(self.screen, pygame.Color("black"), (0, 0),(0, self.height), self.thickness)
@@ -40,7 +45,8 @@ class Board:
     def select(self, row, col):
         self.selectR = row
         self.selectC = col
-        self.cells[row][col].set_selected(True)
+        if self.original[self.selectR][self.selectC] == 0:
+            self.cells[row][col].set_selected(True)
 
     def unselect(self):
         self.cells[self.selectR][self.selectC].set_selected(False)
@@ -60,6 +66,7 @@ class Board:
     def place_number(self, value):
         if self.cells[self.selectR][self.selectC].selected:
             self.cells[self.selectR][self.selectC].set_cell_value(value)
+        self.update_board()
 
     def reset_to_original(self):
         for r in range(len(self.sudoku)):

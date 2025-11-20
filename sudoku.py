@@ -46,13 +46,13 @@ def main():
                         board.select(board.click(event.pos[0], event.pos[1])[0], board.click(event.pos[0], event.pos[1])[1])
                         digit = 0
                     elif event.type == pygame.KEYDOWN:
-                        if chr(event.key).isdigit() and chr(event.key).isdigit()>0:
+                        if chr(event.key).isdigit() and int(event.key)!=48:
                             digit = chr(event.key)
                             board.sketch(digit)
                             print(f"Number pressed: {digit}")
-                        elif event.key == pygame.K_KP_ENTER:
+                        elif event.key == pygame.K_RETURN:
                             board.place_number(digit)
-                            board.update_board()
+                            board.unselect()
                             print(f"Entered")
                         elif event.key == pygame.K_DELETE:
                             board.clear()

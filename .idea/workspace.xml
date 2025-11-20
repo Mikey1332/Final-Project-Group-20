@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fba28e54-ea97-4ac8-93d6-c1ccbfab3851" name="Changes" comment="edited Board, added cell and sudoku classes">
+    <list default="true" id="fba28e54-ea97-4ac8-93d6-c1ccbfab3851" name="Changes" comment="deleted comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/cell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku_generator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +50,9 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.SodokuGenerator.executor": "Run",
+    "Python.board.executor": "Run",
+    "Python.cell.executor": "Run",
+    "Python.sudoku.executor": "Run",
     "Python.sudoku_generator.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -86,12 +91,59 @@
       <option name="project" value="LOCAL" />
       <updated>1763606223175</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added board methods">
+      <option name="closed" value="true" />
+      <created>1763609311312</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763609311312</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added temporary draw methods">
+      <option name="closed" value="true" />
+      <created>1763615601475</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1763615601475</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added interface and events">
+      <option name="closed" value="true" />
+      <created>1763615618720</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1763615618720</updated>
+    </task>
+    <task id="LOCAL-00006" summary="deleted comments">
+      <option name="closed" value="true" />
+      <created>1763615627020</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1763615627020</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="sudoku_generator and start of board" />
     <MESSAGE value="edited Board, added cell and sudoku classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="edited Board, added cell and sudoku classes" />
+    <MESSAGE value="added board methods" />
+    <MESSAGE value="added temporary draw methods" />
+    <MESSAGE value="added interface and events" />
+    <MESSAGE value="deleted comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted comments" />
   </component>
 </project>

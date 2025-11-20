@@ -2,6 +2,9 @@ import pygame
 
 
 class Cell:
+    pygame.font.init()
+    font = pygame.font.Font(None, 90)
+
     def __init__(self, value, row, col, screen):
         self.value = value
         self.sketched_value = value
@@ -30,6 +33,10 @@ class Cell:
         pygame.draw.line(self.screen, pygame.Color("purple"), (x+width, y),(x+width, y+height), 3)
         pygame.draw.line(self.screen, pygame.Color("purple"), (x, y+height),(x+width, y+height), 3)
 
-
-
-        # pygame.draw.rect()
+        if self.sketched_value != 0:
+            if self.selected and self.sketched_value!=self.value:
+                text_color = pygame.Color("orange")
+            else:
+                text_color = pygame.Color("black")
+            text_surface = self.font.render(str(self.sketched_value), True, text_color)
+            self.screen.blit(text_surface, (x+width/3.5, y))

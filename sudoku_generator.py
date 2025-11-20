@@ -88,7 +88,14 @@ class SudokuGenerator:
 
     def remove_cells(self):
         # removes cells to 0 with random row col coords
-        print("Write the remove_cells function")
+        for n in range(self.removed_cells):
+            removed = False
+            while not removed:
+                r, c = random.randint(0, self.row_length-1), random.randint(0, self.row_length-1)
+                if self.board[r][c] != 0:
+                    self.board[r][c] = 0
+                    removed = True
+
 
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
