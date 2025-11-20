@@ -5,6 +5,7 @@ from cell import Cell
 
 class Board:
     size = 9
+    thickness = 5
     def __init__(self, width, height, screen, difficulty):
         self.width = width
         self.height = height
@@ -16,31 +17,49 @@ class Board:
         for r in range(len(self.sudoku)):
             self.cells.append([])
             for c in range(len(self.sudoku)):
-                self.cells[r] += Cell(self.sudoku[r][c], r, c, self.screen)
+                self.cells[r].append(Cell(self.sudoku[r][c], r, c, self.screen))
         self.selectR = -1
         self.selectC = -1
 #
     def draw(self):
+        # print("Drawing Board")
+        for r in range(len(self.cells)):
+            for c in range(len(self.cells[r])):
+                self.cells[r][c].draw(r*self.width//len(self.sudoku), c*self.height//len(self.sudoku), self.width/len(self.sudoku), self.height/len(self.sudoku))
 
-        for cell in self.cells:
-            cell.draw()
+        pygame.draw.line(self.screen, pygame.Color("black"), (0, 0),(self.width, 0), self.thickness)
+        pygame.draw.line(self.screen, pygame.Color("black"), (0, 0),(0, self.height), self.thickness)
+        pygame.draw.line(self.screen, pygame.Color("black"), (0, self.height), (self.width, self.height), self.thickness)
+        pygame.draw.line(self.screen, pygame.Color("black"), (self.width, 0), (self.width, self.height), self.thickness)
+
+        for box_col in range(0, self.width, self.width//int(len(self.sudoku)**(1/2))):
+            pygame.draw.line(self.screen, pygame.Color("black"), (box_col, 0), (box_col, self.height), self.thickness)
+        for box_row in range(0, self.height, self.height//int(len(self.sudoku)**(1/2))):
+            pygame.draw.line(self.screen, pygame.Color("black"), (0, box_row), (self.width, box_row), self.thickness)
 
     def select(self, row, col):
         self.selectR = row
         self.selectC = col
+        self.cells[row][col].set_selected(True)
+
+    def unselect(self):
+        self.cells[self.selectR][self.selectC].set_selected(False)
 
     def click(self, x, y):
         return x*len(self.sudoku)//self.width, y*len(self.sudoku)//self.height
 
     def clear(self):
-        if self.original[self.selectR][self.selectC] != 0:
-            self.cells[self.selectR][self.selectC].set_cell_value(0)
+        if self.cells[self.selectR][self.selectC].selected:
+            if self.original[self.selectR][self.selectC] == 0:
+                self.cells[self.selectR][self.selectC].set_cell_value(0)
 
     def sketch(self, value):
-        self.cells[self.selectR][self.selectC].set_sketched_value(value)
+        if self.cells[self.selectR][self.selectC].selected:
+            self.cells[self.selectR][self.selectC].set_sketched_value(value)
 
     def place_number(self, value):
-        self.cells[self.selectR][self.selectC].set_cell_value(value)
+        if self.cells[self.selectR][self.selectC].selected:
+            self.cells[self.selectR][self.selectC].set_cell_value(value)
 
     def reset_to_original(self):
         for r in range(len(self.sudoku)):
@@ -48,11 +67,9 @@ class Board:
                 self.cells[r][c].set_cell_value(self.original[r][c])
 
     def is_full(self):
-        for r in range(len(self.sudoku)):
-            for c in range(len(self.sudoku)):
-                if self.sudoku[r][c] == 0:
-                    return False
-        return True
+        if self.find_empty == (-1, -1):
+            return True
+        return False
 
     def update_board(self):
         for r in range(len(self.sudoku)):
