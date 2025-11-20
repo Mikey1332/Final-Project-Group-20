@@ -28,10 +28,8 @@ class SudokuGenerator:
 
     def valid_in_col(self, col, num):
         for r in range(len(self.board)):
-            # print(self.board[r][col])
             if num == self.board[r][col]:
                 return False
-        # print("\n", num, "can go in col", col, "\n\n")
         return True
 
     def valid_in_box(self, row_start, col_start, num):
