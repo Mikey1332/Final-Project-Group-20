@@ -118,9 +118,9 @@ class Board:
                     if r != other_r and self.sudoku[r][c] == self.sudoku[other_r][c]:
                         return False
                 # check box
-                for box_r in range(int(r//int(len(self.sudoku)**(1/2))*int(len(self.sudoku)**(1/2)), r//int(len(self.sudoku)**(1/2))*len(self.sudoku)+(len(self.sudoku)))):
-                    for box_c in range(int(c//(len(self.sudoku)**(1/2))*int(len(self.sudoku)**(1/2)), c//int(len(self.sudoku)**(1/2))*(len(self.sudoku))+(len(self.sudoku)))):
-                        if (r != box_r and c != box_c) and self.sudoku[r][c] == self.sudoku[box_r][box_c]:
+                for box_r in range(int(r//int(len(self.sudoku)**(1/2))*int(len(self.sudoku)**(1/2))), int(r//int(len(self.sudoku)**(1/2))*len(self.sudoku)**(1/2)+len(self.sudoku)**(1/2))):
+                    for box_c in range(int(c//(len(self.sudoku)**(1/2))*int(len(self.sudoku)**(1/2))), int(c//int(len(self.sudoku)**(1/2))*len(self.sudoku)**(1/2)+len(self.sudoku)**(1/2))):
+                        if not (r == box_r and c == box_c) and self.sudoku[r][c] == self.sudoku[box_r][box_c]:
                             return False
         return True
 

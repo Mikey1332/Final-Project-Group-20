@@ -11,8 +11,6 @@ class SudokuGenerator:
             self.board.append([])
             for c in range(row_length):
                 self.board[r].append("-")
-        self.fill_values()
-
 
     def get_board(self):
         return self.board
@@ -87,7 +85,6 @@ class SudokuGenerator:
         self.fill_remaining(0, self.box_length)
 
     def remove_cells(self):
-        # removes cells to 0 with random row col coords
         for n in range(self.removed_cells):
             removed = False
             while not removed:
