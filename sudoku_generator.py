@@ -11,7 +11,7 @@ class SudokuGenerator:
             self.board.append([])
             for c in range(row_length):
                 self.board[r].append("-")
-        self.fill_values()
+
 
 
     def get_board(self):
@@ -83,6 +83,7 @@ class SudokuGenerator:
         return False
  
     def fill_values(self):
+
         self.fill_diagonal()
         self.fill_remaining(0, self.box_length)
 

@@ -8,7 +8,6 @@ screenH = 512
 def main():
     try:
         pygame.init()
-        print("hi")
         screen = pygame.display.set_mode((screenW, screenH))
         clock = pygame.time.Clock()
         running = True
