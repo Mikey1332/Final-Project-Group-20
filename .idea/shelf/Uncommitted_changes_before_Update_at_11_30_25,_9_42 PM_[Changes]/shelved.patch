@@ -1,0 +1,114 @@
+Index: sudoku_generator.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import math, random\n\nclass SudokuGenerator:\n\n    def __init__(self, row_length, removed_cells):\n        self.row_length = row_length\n        self.removed_cells = removed_cells\n        self.box_length = int(row_length ** (1 / 2))\n        self.board = []\n        for r in range(row_length):\n            self.board.append([])\n            for c in range(row_length):\n                self.board[r].append(\"-\")\n\n\n\n    def get_board(self):\n        return self.board\n\n    def print_board(self):\n        for r in range(len(self.board)):\n            for c in range(len(self.board[r])):\n                print(self.board[r][c], end=\" \")\n            print()\n\n    def valid_in_row(self, row, num):\n        return not (num in self.board[row])\n\n    def valid_in_col(self, col, num):\n        for r in range(len(self.board)):\n            if num == self.board[r][col]:\n                return False\n        return True\n\n    def valid_in_box(self, row_start, col_start, num):\n        for r in range(row_start, row_start+3):\n            for c in range(col_start, col_start+3):\n                if self.board[r][c] == num:\n                    return False\n        return True\n\n    def is_valid(self, row, col, num):\n        return (self.valid_in_row(row, num)\n                and self.valid_in_col(col, num)\n                and self.valid_in_box((row//self.box_length)*self.box_length, (col//self.box_length)*self.box_length, num))\n\n    def fill_box(self, row_start, col_start):\n        unused_in_box = [1, 2, 3, 4, 5, 6, 7, 8, 9]\n        random.shuffle(unused_in_box)\n        for r in range(row_start, row_start+self.box_length):\n            for c in range(col_start, col_start+self.box_length):\n                self.board[r][c] = unused_in_box.pop()\n\n    def fill_diagonal(self):\n        for b in range(self.row_length//self.box_length):\n            self.fill_box(b*self.box_length, b*self.box_length)\n\n    def fill_remaining(self, row, col):\n        if col >= self.row_length and row < self.row_length - 1:\n            row += 1\n            col = 0\n        if row >= self.row_length and col >= self.row_length:\n            return True\n        if row < self.box_length:\n            if col < self.box_length:\n                col = self.box_length\n        elif row < self.row_length - self.box_length:\n            if col == int(row // self.box_length * self.box_length):\n                col += self.box_length\n        else:\n            if col == self.row_length - self.box_length:\n                row += 1\n                col = 0\n                if row >= self.row_length:\n                    return True\n\n        for num in range(1, self.row_length + 1):\n            if self.is_valid(row, col, num):\n                self.board[row][col] = num\n                if self.fill_remaining(row, col + 1):\n                    return True\n                self.board[row][col] = 0\n        return False\n \n    def fill_values(self):\n        self.fill_diagonal()\n        self.fill_remaining(0, self.box_length)\n\n    def remove_cells(self):\n        # removes cells to 0 with random row col coords\n        for n in range(self.removed_cells):\n            removed = False\n            while not removed:\n                r, c = random.randint(0, self.row_length-1), random.randint(0, self.row_length-1)\n                if self.board[r][c] != 0:\n                    self.board[r][c] = 0\n                    removed = True\n\n\ndef generate_sudoku(size, removed):\n    sudoku = SudokuGenerator(size, removed)\n    sudoku.fill_values()\n    board = sudoku.get_board()\n    sudoku.remove_cells()\n    board = sudoku.get_board()\n    sudoku.print_board()\n    return board
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sudoku_generator.py b/sudoku_generator.py
+--- a/sudoku_generator.py	(revision 377fce1a40a03d1551f7839d0a842228bdcb1176)
++++ b/sudoku_generator.py	(date 1763874898098)
+@@ -13,7 +13,6 @@
+                 self.board[r].append("-")
+ 
+ 
+-
+     def get_board(self):
+         return self.board
+ 
+Index: .idea/Sudoku.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"PYTHON_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\">\n    <content url=\"file://$MODULE_DIR$\">\n      <excludeFolder url=\"file://$MODULE_DIR$/.venv\" />\n    </content>\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.13 (Final-Project-Group-20)\" jdkType=\"Python SDK\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/Sudoku.iml b/.idea/Sudoku.iml
+--- a/.idea/Sudoku.iml	(revision 377fce1a40a03d1551f7839d0a842228bdcb1176)
++++ b/.idea/Sudoku.iml	(date 1763874898135)
+@@ -4,7 +4,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.13 (Final-Project-Group-20)" jdkType="Python SDK" />
++    <orderEntry type="jdk" jdkName="Python 3.13 (Sudoku)" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"Black\">\n    <option name=\"sdkName\" value=\"Python 3.13 (Sudoku)\" />\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.13 (Final-Project-Group-20)\" project-jdk-type=\"Python SDK\" />\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 377fce1a40a03d1551f7839d0a842228bdcb1176)
++++ b/.idea/misc.xml	(date 1763874898137)
+@@ -3,5 +3,5 @@
+   <component name="Black">
+     <option name="sdkName" value="Python 3.13 (Sudoku)" />
+   </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (Final-Project-Group-20)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (Sudoku)" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"fba28e54-ea97-4ac8-93d6-c1ccbfab3851\" name=\"Changes\" comment=\"bug fixes, highlights common numbers,\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/Sudoku.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/Sudoku.iml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sudoku_generator.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sudoku_generator.py\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;Mikey1332&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\n  \"selectedUrlAndAccountId\": {\n    \"url\": \"https://github.com/Mikey1332/Final-Project-Group-20.git\",\n    \"accountId\": \"e8bc1c93-d7c9-435f-9b5e-d32cd46a7fbe\"\n  }\n}]]></component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1\n}</component>\n  <component name=\"ProjectId\" id=\"35JSmPHgXUbidqgkPONVichcLwL\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\n    &quot;Python.SodokuGenerator.executor&quot;: &quot;Run&quot;,\n    &quot;Python.board.executor&quot;: &quot;Run&quot;,\n    &quot;Python.cell.executor&quot;: &quot;Run&quot;,\n    &quot;Python.sudoku.executor&quot;: &quot;Run&quot;,\n    &quot;Python.sudoku_generator.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;\n  }\n}</component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-python-sdk-7e47963ff851-f0eec537fc84-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23892.515\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"fba28e54-ea97-4ac8-93d6-c1ccbfab3851\" name=\"Changes\" comment=\"\" />\n      <created>1762826840027</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1762826840027</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"sudoku_generator and start of board\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763593876929</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763593876929</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"edited Board, added cell and sudoku classes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763606223175</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763606223175</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"added board methods\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763609311312</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763609311312</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"added temporary draw methods\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763615601475</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763615601475</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"added interface and events\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763615618720</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763615618720</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"deleted comments\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763615627020</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763615627020</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Added numbers, inputs, box selection, and empty boxes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763618214354</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763618214354</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"Added numbers, inputs, box selection, and empty boxes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763618234513</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763618234513</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Fixed the selection\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763618510498</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763618510498</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"Fixed the mirrored board in console vs. screen and improved GUI\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763652447386</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763652447386</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"Changed text colors\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763653416096</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763653416096</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"bug fixes, highlights common numbers,\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763680390416</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763680390416</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"bug fixes, highlights common numbers,\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763680713681</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763680713681</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"14\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"sudoku_generator and start of board\" />\n    <MESSAGE value=\"edited Board, added cell and sudoku classes\" />\n    <MESSAGE value=\"added board methods\" />\n    <MESSAGE value=\"added temporary draw methods\" />\n    <MESSAGE value=\"added interface and events\" />\n    <MESSAGE value=\"deleted comments\" />\n    <MESSAGE value=\"Added numbers, inputs, box selection, and empty boxes\" />\n    <MESSAGE value=\"Fixed the selection\" />\n    <MESSAGE value=\"Fixed the mirrored board in console vs. screen and improved GUI\" />\n    <MESSAGE value=\"Changed text colors\" />\n    <MESSAGE value=\"bug fixes, highlights common numbers,\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"bug fixes, highlights common numbers,\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 377fce1a40a03d1551f7839d0a842228bdcb1176)
++++ b/.idea/workspace.xml	(date 1763874898136)
+@@ -5,8 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="fba28e54-ea97-4ac8-93d6-c1ccbfab3851" name="Changes" comment="bug fixes, highlights common numbers,">
+-      <change beforePath="$PROJECT_DIR$/.idea/Sudoku.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Sudoku.iml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/sudoku_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku_generator.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -22,6 +21,19 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <excluded-from-favorite>
++      <branch-storage>
++        <map>
++          <entry type="LOCAL">
++            <value>
++              <list>
++                <branch-info repo="$PROJECT_DIR$" source="main" />
++              </list>
++            </value>
++          </entry>
++        </map>
++      </branch-storage>
++    </excluded-from-favorite>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+@@ -30,12 +42,12 @@
+     &quot;assignee&quot;: &quot;Mikey1332&quot;
+   }
+ }</component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/Mikey1332/Final-Project-Group-20.git",
+-    "accountId": "e8bc1c93-d7c9-435f-9b5e-d32cd46a7fbe"
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/Mikey1332/Final-Project-Group-20.git&quot;,
++    &quot;accountId&quot;: &quot;e724f2ac-34b8-43de-ab6d-ae84f4ff0a68&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 1
+ }</component>
