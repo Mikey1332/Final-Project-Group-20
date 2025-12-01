@@ -2,8 +2,9 @@ import pygame
 
 from board import Board
 
+barH = 30
 screenW = 640
-screenH = 512
+screenH = 512 + barH
 
 def main(difficulty):
     try:
@@ -44,12 +45,17 @@ def main(difficulty):
             screen.fill("light blue")
             if game_start:
                 # draw menu
-                board = Board(screenW, screenH, screen, difficulty)
+                board = Board(screenW, screenH-barH, screen, difficulty)
                 in_progress = True
                 game_start = False
                 board_valid=board.check_board()
             elif in_progress:
                 board.draw()
+                font = pygame.font.Font(None, 30)
+                text_surface = font.render("Lives:", True, pygame.Color("black"))
+                screen.blit(text_surface,(5, screenH - barH*3/4))
+                for n in range(lives):
+                    pygame.draw.circle(screen, pygame.Color("dark blue"), (85+n*30, screenH - barH/2), 10, 15)
                 if board.is_full():
                     print("checking board")
                     if board.check_board():
@@ -80,8 +86,8 @@ def main(difficulty):
                 elif in_progress:
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if digit != 0:
-                            board.place_number(digit)
-                            handle_move_result()
+                            #NEEDS TO CHECK FOR IF ENTErED OR NOT
+                            board.clear()
                         board.unselect()
                         digit = 0
                         board.select(

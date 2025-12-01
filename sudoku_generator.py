@@ -13,7 +13,6 @@ class SudokuGenerator:
                 self.board[r].append("-")
 
 
-
     def get_board(self):
         return self.board
 

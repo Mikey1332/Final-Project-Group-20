@@ -29,7 +29,6 @@ class Board:
         self.selectC = -1
 #
     def draw(self):
-        # print("Drawing Board")
         for r in range(len(self.cells)):
             for c in range(len(self.cells[r])):
                 self.cells[r][c].draw(c*self.width//len(self.sudoku), r*self.height//len(self.sudoku), self.width/len(self.sudoku), self.height/len(self.sudoku))
