@@ -24,6 +24,9 @@ def main(difficulty):
         play_again_rect=pygame.Rect(screenW//2-100,
                                     screenH//2-30,
                                     200,60)
+        quit_rect = pygame.Rect(screenW // 2 - 100,
+                                screenH // 2 + 50,
+                                200, 60)
 
         def handle_move_result():
             nonlocal lives, board_valid, in_progress, game_over, win
@@ -38,6 +41,7 @@ def main(difficulty):
                     in_progress=False
                     game_over=True
                     win=False
+                    return
             else:
                 if 0<=sel_r<board.size and 0<=sel_c<board.size:
                     board.cells[sel_r][sel_c].set_wrong(False)
@@ -79,6 +83,13 @@ def main(difficulty):
                     (play_again_rect.x + (play_again_rect.width - button_text.get_width()) // 2,
                      play_again_rect.y + (play_again_rect.height - button_text.get_height()) // 2),
                 )
+                pygame.draw.rect(screen, "red", quit_rect)
+                quit_text = button_font.render("Quit", True, (255, 255, 255))
+                screen.blit(
+                    quit_text,
+                    (quit_rect.x + (quit_rect.width - quit_text.get_width()) // 2,
+                     quit_rect.y + (quit_rect.height - quit_text.get_height()) // 2)
+                )
 
             #EVENTS
             for event in pygame.event.get():
@@ -113,82 +124,76 @@ def main(difficulty):
                 elif game_over:
                     if event.type==pygame.MOUSEBUTTONDOWN:
                         if play_again_rect.collidepoint(event.pos):
-                            running=False
+                            return "restart"
+                        if quit_rect.collidepoint(event.pos):
+                            return "quit"
             pygame.display.flip()
-            clock.tick(60)
+            continue
     finally:
-        pygame.quit()
+        pass
 
 
 if __name__ == "__main__":
     pygame.init()
-    DARK_BLUE = (0, 0, 139)
-    WHITE = (255, 255, 255)
-    LIGHT_BLUE = (173, 216, 230)
+    screen = pygame.display.set_mode((screenW, screenH))
     font = pygame.font.SysFont('Corbel', 50)
     titlefont = pygame.font.SysFont('Corbel', 80)
-    title_text = titlefont.render('SUDOKU', True, WHITE)
-    ez_text = font.render('Easy', True, WHITE)
-    mid_text = font.render('Medium', True, WHITE)
-    hrd_text = font.render('Hard', True, WHITE)
-    screen = pygame.display.set_mode((screenW, screenH))
-    running = True
-    difficulty = "easy"
+    ez_text = font.render('Easy', True, (255, 255, 255))
+    mid_text = font.render('Medium', True, (255, 255, 255))
+    hrd_text = font.render('Hard', True, (255, 255, 255))
+    title_text = titlefont.render('SUDOKU', True, (255, 255, 255))
 
-    while running:
-        screen.fill("light blue")
-        mouse = pygame.mouse.get_pos()
+    # Difficulty menu function
+    def difficulty_menu():
+        while True:
+            screen.fill("light blue")
+            mouse = pygame.mouse.get_pos()
 
-        # Button dimensions
-        ez_button_x, ez_button_y = 220, 140
-        ez_button_width, ez_button_height = 200, 80
+            ez_button = pygame.Rect(220, 140, 200, 80)
+            mid_button = pygame.Rect(220, 284, 200, 80)
+            hrd_button = pygame.Rect(220, 428, 200, 80)
 
-        mid_button_x, mid_button_y = 220, 284
-        mid_button_width, mid_button_height = 200, 80
+            # EAZY
+            if ez_button.collidepoint(mouse):
+                pygame.draw.rect(screen, "light green", ez_button)
+            else:
+                pygame.draw.rect(screen, "green", ez_button)
 
-        hrd_button_x, hrd_button_y = 220, 428
-        hrd_button_width, hrd_button_height = 200, 80
+            # MEDIUM
+            if mid_button.collidepoint(mouse):
+                pygame.draw.rect(screen, "light yellow", mid_button)
+            else:
+                pygame.draw.rect(screen, "orange", mid_button)
 
-        # Check if mouse is over the button
-        if ez_button_x <= mouse[0] <= ez_button_x + ez_button_width and ez_button_y <= mouse[1] <= ez_button_y + ez_button_height:
-            pygame.draw.rect(screen, "light green", [ez_button_x, ez_button_y, ez_button_width, ez_button_height])
-            if pygame.mouse.get_pressed()[0]:
-                difficulty = "easy"
-                main(difficulty)
-                pygame.init()
-                screen=pygame.display.set_mode((screenW, screenH))
-        else:
-            pygame.draw.rect(screen, "green", [ez_button_x, ez_button_y, mid_button_width, mid_button_height])
-        if mid_button_x <= mouse[0] <= mid_button_x + mid_button_width and mid_button_y <= mouse[1] <= mid_button_y + mid_button_height:
-            pygame.draw.rect(screen, "light yellow", [mid_button_x, mid_button_y, mid_button_width, mid_button_height])
-            if pygame.mouse.get_pressed()[0]:
-                difficulty = "medium"
-                main(difficulty)
-                pygame.init()
-                screen=pygame.display.set_mode((screenW, screenH))
-        else:
-            pygame.draw.rect(screen, "orange", [mid_button_x, mid_button_y, mid_button_width, mid_button_height])
+            # HARD
+            if hrd_button.collidepoint(mouse):
+                pygame.draw.rect(screen, "pink", hrd_button)
+            else:
+                pygame.draw.rect(screen, "red", hrd_button)
 
-        if hrd_button_x <= mouse[0] <= hrd_button_x + hrd_button_width and hrd_button_y <= mouse[1] <= hrd_button_y + hrd_button_height:
-            pygame.draw.rect(screen, "pink", [hrd_button_x, hrd_button_y, hrd_button_width, hrd_button_height])
-            if pygame.mouse.get_pressed()[0]:  # Left mouse click
-                difficulty = "hard"
-                main(difficulty)
-                pygame.init()
-                screen=pygame.display.set_mode((screenW, screenH))
-        else:
-            pygame.draw.rect(screen, "red", [hrd_button_x, hrd_button_y, hrd_button_width, hrd_button_height])
+            screen.blit(ez_text, (ez_button.x + 50, ez_button.y + 15))
+            screen.blit(mid_text, (mid_button.x + 15, mid_button.y + 15))
+            screen.blit(hrd_text, (hrd_button.x + 50, hrd_button.y + 15))
+            screen.blit(title_text, (170, 10))
 
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if ez_button.collidepoint(event.pos):
+                        return "easy"
+                    if mid_button.collidepoint(event.pos):
+                        return "medium"
+                    if hrd_button.collidepoint(event.pos):
+                        return "hard"
 
-        # Render text on the button
-        screen.blit(ez_text, (ez_button_x + 50, ez_button_y + 15))
-        screen.blit(mid_text, (mid_button_x + 15, mid_button_y + 15))
-        screen.blit(hrd_text, (hrd_button_x + 50, hrd_button_y + 15))
-        screen.blit(title_text, (170, 10))
+            pygame.display.update()
 
-        # Event handling
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
-        pygame.display.update()
+    # MAIN LOOP (clean & correct)
+    while True:
+        difficulty = difficulty_menu()
+        result = main(difficulty)
+        if result == "quit":
+            pygame.quit()
+            quit()
