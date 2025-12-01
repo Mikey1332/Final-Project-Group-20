@@ -33,7 +33,9 @@ def main(difficulty):
             new_valid=board.check_board()
             sel_r,sel_c=board.selectR, board.selectC
             if not new_valid:
-                lives=lives-1
+                if 0 <= sel_r < board.size and 0 <= sel_c < board.size and not board.cells[sel_r][sel_c].wrong:
+                    lives -= 1
+
                 print(f"Wrong move! Lives remaining: {lives}")
                 if 0<=sel_r<board.size and 0<=sel_c<board.size:
                     board.cells[sel_r][sel_c].set_wrong(True)
@@ -61,7 +63,7 @@ def main(difficulty):
                 screen.blit(text_surface,(5, screenH - barH*3/4))
                 for n in range(lives):
                     pygame.draw.circle(screen, pygame.Color("dark blue"), (85+n*30, screenH - barH/2), 10, 15)
-                if board.is_full():
+                if board.is_full() and board_valid:
                     print("checking board")
                     if board.check_board():
                         win = True
@@ -107,12 +109,15 @@ def main(difficulty):
                         if chr(event.key).isdigit() and int(event.key)!=48:
                             digit = int(chr(event.key))
                             board.sketch(digit)
+                            board.cells[board.selectR][board.selectC].set_wrong(False)
+
                             print(f"Number pressed: {digit}")
                         elif event.key == pygame.K_RETURN:
                             if digit != 0:
                                 board.place_number(digit)
                                 handle_move_result()
                                 board.unselect()
+                                digit=0
                                 print("Enter")
                         elif event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE:
                             print("Delete")
