@@ -109,20 +109,27 @@ class Board:
         self.update_board()
         for r in range(len(self.sudoku)):
             for c in range(len(self.sudoku)):
-                #check row
+                val = self.sudoku[r][c]
+                if val == 0:
+                    continue
+                # row
                 for other_c in range(len(self.sudoku)):
-                    if c != other_c and self.sudoku[r][c] == self.sudoku[r][other_c]:
+                    if c != other_c and val == self.sudoku[r][other_c]:
                         return False
-                # check column
+                # column
                 for other_r in range(len(self.sudoku)):
-                    if r != other_r and self.sudoku[r][c] == self.sudoku[other_r][c]:
+                    if r != other_r and val == self.sudoku[other_r][c]:
                         return False
-                # check box
-                for box_r in range(int(r//int(len(self.sudoku)**(1/2))*int(len(self.sudoku)**(1/2))), int(r//int(len(self.sudoku)**(1/2))*len(self.sudoku)**(1/2)+len(self.sudoku)**(1/2))):
-                    for box_c in range(int(c//(len(self.sudoku)**(1/2))*int(len(self.sudoku)**(1/2))), int(c//int(len(self.sudoku)**(1/2))*len(self.sudoku)**(1/2)+len(self.sudoku)**(1/2))):
-                        if not (r == box_r and c == box_c) and self.sudoku[r][c] == self.sudoku[box_r][box_c]:
+                # box
+                box_r_start = (r // 3) * 3
+                box_c_start = (c // 3) * 3
+                for br in range(box_r_start, box_r_start + 3):
+                    for bc in range(box_c_start, box_c_start + 3):
+                        if (br != r or bc != c) and val == self.sudoku[br][bc]:
                             return False
+
         return True
+
 
 
 

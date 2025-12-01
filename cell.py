@@ -17,6 +17,7 @@ class Cell:
         self.selected = False
         self.highlighted = False
         self.common = False
+        self.wrong=False
 
     def set_cell_value(self, value):
         self.value = value
@@ -41,9 +42,14 @@ class Cell:
     def set_common(self, common):
         self.common = common
 
+    def set_wrong(self,wrong):
+        self.wrong=wrong
+
     def draw(self, x, y, width, height):
         #Cell Color
-        if self.selected:
+        if self.wrong:
+            fill_color=pygame.Color("lightcoral")
+        elif self.selected:
             fill_color = pygame.Color("lightskyblue")
         elif self.common:
             fill_color = pygame.Color("lightskyblue")
@@ -61,7 +67,9 @@ class Cell:
 
         #Cell Numbers
         if self.sketched_value != 0:
-            if self.selected and self.editable:
+            if self.wrong:
+                text_color=pygame.Color("red")
+            elif self.selected and self.editable:
                 text_color = pygame.Color("royal blue")
             else:
                 text_color = self.original_text_color
