@@ -12,7 +12,7 @@ class Board:
         self.screen = screen
         self.difficulty = difficulty
         self.cells = []
-        self.removed = 30
+        self.removed = 1
         if difficulty == "medium":
             self.removed = 40
         elif difficulty == "hard":
@@ -46,7 +46,6 @@ class Board:
     def select(self, row, col):
         self.selectR = row
         self.selectC = col
-        # if self.original[self.selectR][self.selectC] == 0:
         self.cells[row][col].set_selected(True)
         for r in range(len(self.cells)):
             self.cells[r][col].set_highlighted(True)
@@ -58,6 +57,7 @@ class Board:
                     self.cells[r][c].set_common(True)
 
     def unselect(self):
+        self.cells[self.selectR][self.selectC].set_sketched_value(self.cells[self.selectR][self.selectC].value)
         self.cells[self.selectR][self.selectC].set_selected(False)
         for r in range(len(self.cells)):
             self.cells[r][self.selectC].set_highlighted(False)

@@ -24,6 +24,7 @@ def main(difficulty):
         play_again_rect=pygame.Rect(screenW//2-100,
                                     screenH//2-30,
                                     200,60)
+
         def handle_move_result():
             nonlocal lives, board_valid, in_progress, game_over, win
             new_valid=board.check_board()
@@ -85,9 +86,6 @@ def main(difficulty):
                     running=False
                 elif in_progress:
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        if digit != 0:
-                            #NEEDS TO CHECK FOR IF ENTErED OR NOT
-                            board.clear()
                         board.unselect()
                         digit = 0
                         board.select(
