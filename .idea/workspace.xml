@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fba28e54-ea97-4ac8-93d6-c1ccbfab3851" name="Changes" comment="ADded lives display">
+    <list default="true" id="fba28e54-ea97-4ac8-93d6-c1ccbfab3851" name="Changes" comment="Centered text on title page and fixed easy mode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,12 +32,12 @@
     &quot;assignee&quot;: &quot;Mikey1332&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Mikey1332/Final-Project-Group-20.git&quot;,
-    &quot;accountId&quot;: &quot;e8bc1c93-d7c9-435f-9b5e-d32cd46a7fbe&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Mikey1332/Final-Project-Group-20.git",
+    "accountId": "e724f2ac-34b8-43de-ab6d-ae84f4ff0a68"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -188,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764559323385</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Centered text on title page and fixed easy mode">
+      <option name="closed" value="true" />
+      <created>1764689245004</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1764689245004</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,6 +232,7 @@
     <MESSAGE value="Changed text colors" />
     <MESSAGE value="bug fixes, highlights common numbers," />
     <MESSAGE value="ADded lives display" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADded lives display" />
+    <MESSAGE value="Centered text on title page and fixed easy mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Centered text on title page and fixed easy mode" />
   </component>
 </project>

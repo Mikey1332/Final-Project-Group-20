@@ -98,34 +98,61 @@ def main(difficulty):
                 if event.type==pygame.QUIT:
                     running=False
                 elif in_progress:
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        board.unselect()
-                        digit = 0
-                        board.select(
-                            board.click(event.pos[0],event.pos[1])[0],
-                            board.click(event.pos[0],event.pos[1])[1]
-                        )
-                    elif event.type == pygame.KEYDOWN:
-                        if chr(event.key).isdigit() and int(event.key)!=48:
-                            digit = int(chr(event.key))
-                            board.sketch(digit)
-                            board.cells[board.selectR][board.selectC].set_wrong(False)
-
-                            print(f"Number pressed: {digit}")
-                        elif event.key == pygame.K_RETURN:
-                            if digit != 0:
-                                board.place_number(digit)
-                                handle_move_result()
+                    try:
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            board.unselect()
+                            digit = 0
+                            board.select(
+                                board.click(event.pos[0],event.pos[1])[0],
+                                board.click(event.pos[0],event.pos[1])[1]
+                            )
+                        elif event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_UP:
+                                new_selectedR, new_selectedC = board.selectR - 1, board.selectC
+                                if new_selectedR == -1:
+                                    new_selectedR = 8
                                 board.unselect()
+                                board.select(new_selectedR, new_selectedC)
+                            elif event.key == pygame.K_DOWN:
+                                new_selectedR, new_selectedC = board.selectR + 1, board.selectC
+                                if new_selectedR == 9:
+                                    new_selectedR = 0
+                                board.unselect()
+                                board.select(new_selectedR, new_selectedC)
+                            elif event.key == pygame.K_LEFT:
+                                new_selectedR, new_selectedC = board.selectR, board.selectC - 1
+                                if new_selectedC == -1:
+                                    new_selectedC = 8
+                                board.unselect()
+                                board.select(new_selectedR, new_selectedC)
+                            elif event.key == pygame.K_RIGHT:
+                                new_selectedR, new_selectedC = board.selectR, board.selectC + 1
+                                if new_selectedC == 9:
+                                    new_selectedC = 0
+                                board.unselect()
+                                board.select(new_selectedR, new_selectedC)
+                            elif chr(event.key).isdigit() and int(event.key)!=48:
+                                digit = int(chr(event.key))
+                                board.sketch(digit)
+                                board.cells[board.selectR][board.selectC].set_wrong(False)
+
+                                print(f"Number pressed: {digit}")
+                            elif event.key == pygame.K_RETURN:
+                                if digit != 0:
+                                    board.place_number(digit)
+                                    handle_move_result()
+                                    board.unselect()
+                                    digit=0
+                                    print("Enter")
+                            elif event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE:
+                                print("Delete")
+                                board.clear()
+                                sel_r,sel_c=board.selectR,board.selectC
+                                if 0<=sel_r<board.size and 0<=sel_c<board.size:
+                                    board.cells[sel_r][sel_c].set_wrong(False)
                                 digit=0
-                                print("Enter")
-                        elif event.key == pygame.K_DELETE or event.key == pygame.K_BACKSPACE:
-                            print("Delete")
-                            board.clear()
-                            sel_r,sel_c=board.selectR,board.selectC
-                            if 0<=sel_r<board.size and 0<=sel_c<board.size:
-                                board.cells[sel_r][sel_c].set_wrong(False)
-                            digit=0
+                    except Exception as e:
+                        print(f"Invalid Key: {e}")
                 elif game_over:
                     if event.type==pygame.MOUSEBUTTONDOWN:
                         if play_again_rect.collidepoint(event.pos):
@@ -158,7 +185,7 @@ if __name__ == "__main__":
             mid_button = pygame.Rect(220, 284, 200, 80)
             hrd_button = pygame.Rect(220, 428, 200, 80)
 
-            # EAZY
+            # EASY
             if ez_button.collidepoint(mouse):
                 pygame.draw.rect(screen, "light green", ez_button)
             else:
