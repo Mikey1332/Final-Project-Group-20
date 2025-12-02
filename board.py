@@ -1,4 +1,4 @@
-import pygame, random
+import pygame, random, copy
 
 from sudoku_generator import generate_sudoku
 from cell import Cell
@@ -18,7 +18,7 @@ class Board:
         elif difficulty == "hard":
             self.removed = 50
         self.sudoku = generate_sudoku(self.size, self.removed)
-        self.original = self.sudoku
+        self.original = copy.deepcopy(self.sudoku)
         for r in range(len(self.sudoku)):
             self.cells.append([])
             for c in range(len(self.sudoku)):
@@ -86,6 +86,8 @@ class Board:
         for r in range(len(self.sudoku)):
             for c in range(len(self.sudoku)):
                 self.cells[r][c].set_cell_value(self.original[r][c])
+                self.cells[r][c].set_sketched_value(self.original[r][c])
+        self.update_board()
 
     def is_full(self):
         if self.find_empty() == (-1, -1):

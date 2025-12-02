@@ -27,6 +27,11 @@ def main(difficulty):
         quit_rect = pygame.Rect(screenW // 2 - 100,
                                 screenH // 2 + 50,
                                 200, 60)
+        button1 = pygame.Rect(185, screenH - barH/2 - 9, (screenW-185-40*3)/3, 20)
+        button2 = pygame.Rect(185+1*150, screenH - barH / 2 - 9, (screenW - 185 - 40 * 3) / 3, 20)
+        button3 = pygame.Rect(185+2*150, screenH - barH / 2 - 9, (screenW - 185 - 40 * 3) / 3, 20)
+
+
 
         def handle_move_result():
             nonlocal lives, board_valid, in_progress, game_over, win
@@ -49,6 +54,7 @@ def main(difficulty):
                     board.cells[sel_r][sel_c].set_wrong(False)
             board_valid=new_valid
         while running:
+            mouse = pygame.mouse.get_pos()
             screen.fill("light blue")
             if game_start:
                 # draw menu
@@ -61,8 +67,34 @@ def main(difficulty):
                 font = pygame.font.Font(None, 30)
                 text_surface = font.render("Lives:", True, pygame.Color("black"))
                 screen.blit(text_surface,(5, screenH - barH*3/4))
+                #Draws Lives
                 for n in range(lives):
                     pygame.draw.circle(screen, pygame.Color("dark blue"), (85+n*30, screenH - barH/2), 10, 15)
+                font = pygame.font.Font(None, 30)
+                # Draws Button 1
+                if button1.collidepoint(mouse):
+                    pygame.draw.rect(screen, "lightskyblue", button1)
+                else:
+                    pygame.draw.rect(screen, "dark blue", button1)
+                button_text = font.render("Reset", True, pygame.Color("white"))
+                screen.blit(button_text,(button1.x + (button1.width - button_text.get_width()) // 2, button1.y + (button1.height - button_text.get_height()) // 2))
+                # Draws Button 2
+                if button2.collidepoint(mouse):
+                    pygame.draw.rect(screen, "lightskyblue", button2)
+                else:
+                    pygame.draw.rect(screen, "dark blue", button2)
+                button_text = font.render("Restart", True, pygame.Color("white"))
+                screen.blit(button_text, (button2.x + (button1.width - button_text.get_width()) // 2,
+                                          button2.y + (button1.height - button_text.get_height()) // 2))
+                # Draws Button 3
+                if button3.collidepoint(mouse):
+                    pygame.draw.rect(screen, "lightskyblue", button3)
+                else:
+                    pygame.draw.rect(screen, "dark blue", button3)
+                button_text = font.render("Exit", True, pygame.Color("white"))
+                screen.blit(button_text, (button3.x + (button1.width - button_text.get_width()) // 2,
+                                          button3.y + (button1.height - button_text.get_height()) // 2))
+
                 if board.is_full() and board_valid:
                     print("checking board")
                     if board.check_board():
@@ -100,12 +132,22 @@ def main(difficulty):
                 elif in_progress:
                     try:
                         if event.type == pygame.MOUSEBUTTONDOWN:
-                            board.unselect()
-                            digit = 0
-                            board.select(
-                                board.click(event.pos[0],event.pos[1])[0],
-                                board.click(event.pos[0],event.pos[1])[1]
+                            if event.pos[1]<screenH-barH:
+                                board.unselect()
+                                digit = 0
+                                board.select(
+                                    board.click(event.pos[0],event.pos[1])[0],
+                                    board.click(event.pos[0],event.pos[1])[1]
                             )
+                            elif button1.collidepoint(event.pos):
+                                board.reset_to_original()
+                                lives = 3
+
+                            elif button2.collidepoint(event.pos):
+                                difficulty = difficulty_menu()
+                                main(difficulty)
+                            elif button3.collidepoint(event.pos):
+                                pygame.quit()
                         elif event.type == pygame.KEYDOWN:
                             if event.key == pygame.K_UP:
                                 new_selectedR, new_selectedC = board.selectR - 1, board.selectC

@@ -47,7 +47,7 @@ class Cell:
 
     def draw(self, x, y, width, height):
         #Cell Color
-        if self.wrong:
+        if self.wrong and self.sketched_value != 0:
             fill_color=pygame.Color("lightcoral")
         elif self.selected:
             fill_color = pygame.Color("lightskyblue")
