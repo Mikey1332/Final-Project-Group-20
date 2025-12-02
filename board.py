@@ -12,7 +12,7 @@ class Board:
         self.screen = screen
         self.difficulty = difficulty
         self.cells = []
-        self.removed = 1
+        self.removed = 30
         if difficulty == "medium":
             self.removed = 40
         elif difficulty == "hard":

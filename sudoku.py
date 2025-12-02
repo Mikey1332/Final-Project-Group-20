@@ -176,10 +176,10 @@ if __name__ == "__main__":
             else:
                 pygame.draw.rect(screen, "red", hrd_button)
 
-            screen.blit(ez_text, (ez_button.x + 50, ez_button.y + 15))
-            screen.blit(mid_text, (mid_button.x + 15, mid_button.y + 15))
-            screen.blit(hrd_text, (hrd_button.x + 50, hrd_button.y + 15))
-            screen.blit(title_text, (170, 10))
+            screen.blit(ez_text, (ez_button.x + 60, ez_button.y + 25))
+            screen.blit(mid_text, (mid_button.x + 25, mid_button.y + 25))
+            screen.blit(hrd_text, (hrd_button.x + 60, hrd_button.y + 25))
+            screen.blit(title_text, (screenW/3.25, 30))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

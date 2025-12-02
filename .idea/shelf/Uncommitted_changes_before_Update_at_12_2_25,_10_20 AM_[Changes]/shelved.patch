@@ -1,0 +1,76 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"fba28e54-ea97-4ac8-93d6-c1ccbfab3851\" name=\"Changes\" comment=\"ADded lives display\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/board.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/board.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sudoku.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sudoku.py\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Merge.Settings\">\n    <option name=\"BRANCH\" value=\"origin/main\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;Mikey1332&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/Mikey1332/Final-Project-Group-20.git&quot;,\n    &quot;accountId&quot;: &quot;e8bc1c93-d7c9-435f-9b5e-d32cd46a7fbe&quot;\n  }\n}</component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1\n}</component>\n  <component name=\"ProjectId\" id=\"35JSmPHgXUbidqgkPONVichcLwL\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\n    &quot;Python.SodokuGenerator.executor&quot;: &quot;Run&quot;,\n    &quot;Python.board.executor&quot;: &quot;Run&quot;,\n    &quot;Python.cell.executor&quot;: &quot;Run&quot;,\n    &quot;Python.sudoku.executor&quot;: &quot;Run&quot;,\n    &quot;Python.sudoku_generator.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;\n  }\n}</component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-python-sdk-7e47963ff851-f0eec537fc84-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23892.515\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"fba28e54-ea97-4ac8-93d6-c1ccbfab3851\" name=\"Changes\" comment=\"\" />\n      <created>1762826840027</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1762826840027</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"sudoku_generator and start of board\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763593876929</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763593876929</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"edited Board, added cell and sudoku classes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763606223175</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763606223175</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"added board methods\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763609311312</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763609311312</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"added temporary draw methods\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763615601475</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763615601475</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"added interface and events\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763615618720</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763615618720</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"deleted comments\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763615627020</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763615627020</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Added numbers, inputs, box selection, and empty boxes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763618214354</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763618214354</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"Added numbers, inputs, box selection, and empty boxes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763618234513</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763618234513</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Fixed the selection\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763618510498</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763618510498</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"Fixed the mirrored board in console vs. screen and improved GUI\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763652447386</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763652447386</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"Changed text colors\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763653416096</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763653416096</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"bug fixes, highlights common numbers,\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763680390416</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763680390416</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"bug fixes, highlights common numbers,\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763680713681</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763680713681</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"ADded lives display\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1764559323385</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1764559323385</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"15\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"OPEN_GENERIC_TABS\">\n      <map>\n        <entry key=\"fcaf6793-7deb-4c90-9ce8-0ee6148982e5\" value=\"TOOL_WINDOW\" />\n      </map>\n    </option>\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n        <entry key=\"fcaf6793-7deb-4c90-9ce8-0ee6148982e5\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"sudoku_generator and start of board\" />\n    <MESSAGE value=\"edited Board, added cell and sudoku classes\" />\n    <MESSAGE value=\"added board methods\" />\n    <MESSAGE value=\"added temporary draw methods\" />\n    <MESSAGE value=\"added interface and events\" />\n    <MESSAGE value=\"deleted comments\" />\n    <MESSAGE value=\"Added numbers, inputs, box selection, and empty boxes\" />\n    <MESSAGE value=\"Fixed the selection\" />\n    <MESSAGE value=\"Fixed the mirrored board in console vs. screen and improved GUI\" />\n    <MESSAGE value=\"Changed text colors\" />\n    <MESSAGE value=\"bug fixes, highlights common numbers,\" />\n    <MESSAGE value=\"ADded lives display\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"ADded lives display\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision cfdd80fa30982af7d1bb45a8fc4fdd5dd1a39ec9)
++++ b/.idea/workspace.xml	(date 1764617653743)
+@@ -4,10 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="fba28e54-ea97-4ac8-93d6-c1ccbfab3851" name="Changes" comment="ADded lives display">
++    <list default="true" id="fba28e54-ea97-4ac8-93d6-c1ccbfab3851" name="Changes" comment="Fixed life loss error">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -33,12 +31,12 @@
+     &quot;assignee&quot;: &quot;Mikey1332&quot;
+   }
+ }</component>
+-  <component name="GithubPullRequestsUISettings">{
+-  &quot;selectedUrlAndAccountId&quot;: {
+-    &quot;url&quot;: &quot;https://github.com/Mikey1332/Final-Project-Group-20.git&quot;,
+-    &quot;accountId&quot;: &quot;e8bc1c93-d7c9-435f-9b5e-d32cd46a7fbe&quot;
+-  }
+-}</component>
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/Mikey1332/Final-Project-Group-20.git",
++    "accountId": "e724f2ac-34b8-43de-ab6d-ae84f4ff0a68"
++  }
++}]]></component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 1
+ }</component>
+@@ -188,7 +186,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1764559323385</updated>
+     </task>
+-    <option name="localTasksCounter" value="15" />
++    <task id="LOCAL-00015" summary="Fixed life loss error">
++      <option name="closed" value="true" />
++      <created>1764567418098</created>
++      <option name="number" value="00015" />
++      <option name="presentableId" value="LOCAL-00015" />
++      <option name="project" value="LOCAL" />
++      <updated>1764567418098</updated>
++    </task>
++    <task id="LOCAL-00016" summary="Fixed life loss error">
++      <option name="closed" value="true" />
++      <created>1764567425982</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1764567425982</updated>
++    </task>
++    <option name="localTasksCounter" value="17" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -225,6 +239,7 @@
+     <MESSAGE value="Changed text colors" />
+     <MESSAGE value="bug fixes, highlights common numbers," />
+     <MESSAGE value="ADded lives display" />
+-    <option name="LAST_COMMIT_MESSAGE" value="ADded lives display" />
++    <MESSAGE value="Fixed life loss error" />
++    <option name="LAST_COMMIT_MESSAGE" value="Fixed life loss error" />
+   </component>
+ </project>
+\ No newline at end of file
